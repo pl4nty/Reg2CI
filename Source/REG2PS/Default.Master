@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.master.cs" Inherits="REG2PS.Default" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Default.Master.cs" Inherits="REG2PS.Default" %>
 
 <!DOCTYPE html>
 <style type="text/css">
