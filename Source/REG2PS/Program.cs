@@ -32,6 +32,12 @@ foreach (var staticPath in new[] { "Content", "Scripts" })
     });
 }
 
+app.UseStaticFiles(new StaticFileOptions()
+{
+    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Content")),
+    RequestPath = "",
+});
+
 app.UseHttpsRedirection();
 app.UseRouting();
 

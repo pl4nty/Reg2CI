@@ -21,7 +21,7 @@ namespace REG2PS
             }
             catch
             {
-                ShowMessage("please upload your Registry content to https://github.com/rzander/Reg2CI/issues ", MessageType.Error);
+                ShowMessage("please upload your Registry content to https://github.com/pl4nty/Reg2CI/issues ", MessageType.Error);
             }
         }
 
@@ -35,7 +35,7 @@ namespace REG2PS
             }
             catch
             {
-                ShowMessage("please upload your Registry content to https://github.com/rzander/Reg2CI/issues ", MessageType.Error);
+                ShowMessage("please upload your Registry content to https://github.com/pl4nty/Reg2CI/issues ", MessageType.Error);
             }
         }
 
