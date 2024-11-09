@@ -1,11 +1,11 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REG2CI_CMD", "REG2CI\REG2CI_CMD.csproj", "{0B53C6E1-73BD-41FF-BC7F-57B2FD9377D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "REG2PS", "REG2PS\REG2PS.csproj", "{AFD906F9-FE88-4D3E-B5F5-0EFF1492C092}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "REG2PS", "REG2PS\REG2PS.csproj", "{AFD906F9-FE88-4D3E-B5F5-0EFF1492C092}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
