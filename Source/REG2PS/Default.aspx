@@ -24,12 +24,45 @@
         function callAlert(msg) {
             alert(msg);
         }
+        // based on https://developer.mozilla.org/en-US/docs/Web/API/HTML_Drag_and_Drop_API/File_drag_and_drop#process_the_drop
+        function dropHandler(ev) {
+            // Prevent default behavior (Prevent file from being opened)
+            ev.preventDefault();
+
+            let file;
+            if (ev.dataTransfer.items) {
+                // Use DataTransferItemList interface to access the file
+                const item = ev.dataTransfer.items[0];
+                if (item.kind === "file") {
+                    file = item.getAsFile();
+                }
+            } else {
+                // Use DataTransfer interface to access the file(s)
+                file = ev.dataTransfer.files[0];
+            }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementsByTagName("textarea")[0].value = e.target.result;
+            };
+            reader.readAsText(file);
+        }
+        function download() {
+            const data = document.getElementsByTagName('textarea')[1].value;
+            // TODO there must be a better way...
+            const name = data.includes('New-Item') ? 'remediation.ps1' : 'detection.ps1';
+
+            let link = document.createElement("a");
+            link.download = name;
+            link.href = "data:application/octet-stream," + escape(data);
+            link.click();
+        }
     </script>
     <div class="col-md-10 col-md-offset-1 container">
         <div class="row">
             <div class="col-md-12 form-group">
                 <label>Registry:</label>
-                <asp:TextBox ID="tb_REG" runat="server" class="form-control" required="required" placeholder="Paste the content of your .reg File here..." Rows="10" TextMode="MultiLine" Font-Bold="False"></asp:TextBox>
+                <asp:TextBox ID="tb_REG" runat="server" class="form-control" required="required" placeholder="Drag and drop your .reg file here, or paste its contents..." Rows="10" TextMode="MultiLine" Font-Bold="False" ondrop="dropHandler(event);"></asp:TextBox>
             </div>
             <div class="col-md-12 form-group">
                 <label>PowerShell:</label>
@@ -39,10 +72,13 @@
         <br />
         <div>
             <asp:LinkButton ID="bt_Compile" runat="server" CssClass="btn btn-primary" OnClick="bt_Compile_Click">
-                <span aria-hidden="true" class="glyphicon glyphicon-send"></span> Get check Script
+                <span aria-hidden="true" class="glyphicon glyphicon-send"></span> Get detection script
             </asp:LinkButton>
             <asp:LinkButton ID="bt_GetRemPS" runat="server" CssClass="btn btn-primary" OnClick="bt_GetRemPS_Click">
-                <span aria-hidden="true" class="glyphicon glyphicon-send"></span> Get remediation Script
+                <span aria-hidden="true" class="glyphicon glyphicon-send"></span> Get remediation script
+            </asp:LinkButton>
+            <asp:LinkButton class="btn btn-success" onclick="download()">
+                <span aria-hidden="true" class="glyphicon glyphicon-send"></span> Download
             </asp:LinkButton>
         </div>
         <br />
