@@ -1,7 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Hosting;
 using System.IO;
+using System.Web.Routing;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +37,12 @@ app.UseRouting();
 
 app.UseSession();
 app.UseSystemWebAdapters();
+
+app.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStarted.Register(() =>
+{
+    RouteTable.Routes.MapPageRoute("MainPage", "/", "~/Default.aspx");
+});
+
 app.MapHttpHandlers();
 app.MapScriptManager();
 app.MapBundleTable();
