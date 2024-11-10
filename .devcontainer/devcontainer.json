@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "build": "docker build -t reg2ci .",
+    "launch": "docker run -p 8080:8080 --rm -it reg2ci"
+  }
+}
