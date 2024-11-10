@@ -23,21 +23,7 @@ builder.Services.AddDistributedMemoryCache();
 
 var app = builder.Build();
 
-foreach (var staticPath in new[] { "Content", "Scripts" })
-{
-    app.UseStaticFiles(new StaticFileOptions()
-    {
-        FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, staticPath)),
-        RequestPath = "/" + staticPath,
-    });
-}
-
-app.UseStaticFiles(new StaticFileOptions()
-{
-    FileProvider = new PhysicalFileProvider(Path.Combine(builder.Environment.ContentRootPath, "Content")),
-    RequestPath = "",
-});
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 app.UseRouting();
 
